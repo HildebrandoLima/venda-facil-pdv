@@ -1,23 +1,78 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import logo from './assets/logo.png';
+import Form from 'react-bootstrap/Form';
 
 function App() {
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div class="container">
+        <center><img src={logo} alt="logo" className="img-responsive mt-5" />
+          <h4 class="mt-3">Acesso ao Sistema</h4>
+        </center>
+
+        <div class="card mt-3 shadow p-3 mb-5 bg-white rounded">
+          <div class="card-body">
+            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+              <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                  <Form.Group md="4" controlId="validationMatricula">
+                    <Form.Label>
+                      Matrícula &nbsp;&nbsp;&nbsp;
+                      <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Matricula">
+                        ?
+                      </span>
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="matricula"
+                      required
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Campo obrigatório.
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                  <Form.Group md="4" controlId="validationSenha">
+                    <Form.Label>
+                      Senha &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Matricula">
+                        ?
+                      </span>
+                    </Form.Label>
+                    <Form.Control
+                      type="password"
+                      name="senha"
+                      required
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Campo obrigatório.
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </div>
+              </div>
+              <div class="col-md-6 offset-md-3 mt-3">
+                <button class="btn btn-outline-primary" type="submit">Fazer Login</button>
+              </div>
+            </Form>
+          </div>
+        </div>
+        <p class="text-center mt-3"><span><a href="#">Entrar em contato com o suporte.</a></span></p>
+      </div>
     </div>
   );
 }
