@@ -9,6 +9,8 @@ function Users() {
         Api.get('/usuario/listar').then((response) => {
             setUsers(response.data.data);
             console.log(users);
+        }).catch((error) => {
+            console.log(error);
         });
     }, []);
 
@@ -27,8 +29,9 @@ function Users() {
                                         <th scope="col">Nome</th>
                                         <th scope="col">CPF</th>
                                         <th scope="col">Data de Nascimento</th>
+                                        <th scope="col">Gênero</th>
                                         <th scope="col">Telefone</th>
-                                        <th scope="col">Nome</th>
+                                        <th scope="col">Rua/Av</th>
                                         <th scope="col">Bairro</th>
                                         <th scope="col">Cidade</th>
                                         <th scope="col">UF</th>
