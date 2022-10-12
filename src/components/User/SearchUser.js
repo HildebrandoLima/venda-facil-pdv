@@ -4,8 +4,8 @@ function SearchUser() {
   return (
     <div>
       <Form>
-        <div class="form-group">
-          <div class="col-md-6 offset-md-3">
+        <div class="row">
+          <div class="col">
             <Form.Group md="4">
               <Form.Control
                 type="text"
@@ -15,9 +15,9 @@ function SearchUser() {
               />
             </Form.Group>
           </div>
-        </div>
-        <div class="col-md-6 offset-md-3 mt-3">
-          <button class="btn btn-outline-primary" type="submit">Buscar</button>
+          <div class="col">
+            <button class="btn btn-outline-primary" type="submit">Buscar</button>
+          </div>
         </div>
       </Form>
     </div>

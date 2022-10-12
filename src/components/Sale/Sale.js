@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import User from "../User/User";
+import Users from "../User/Users";
 
 function Sale() {
     const [show, setShowUsers] = useState(false);
@@ -26,7 +26,7 @@ function Sale() {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <User />
+                        <Users />
                     </Modal.Body>
                 </Modal>
             </div>

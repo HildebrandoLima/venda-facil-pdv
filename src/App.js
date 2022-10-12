@@ -29,10 +29,7 @@ function App() {
                 <div class="col-md-6 offset-md-3">
                   <Form.Group md="4" controlId="validationMatricula">
                     <Form.Label>
-                      Matrícula &nbsp;&nbsp;&nbsp;
-                      <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Matricula">
-                        ?
-                      </span>
+                      Matrícula
                     </Form.Label>
                     <Form.Control
                       type="text"
@@ -49,10 +46,7 @@ function App() {
                 <div class="col-md-6 offset-md-3">
                   <Form.Group md="4" controlId="validationSenha">
                     <Form.Label>
-                      Senha &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Matricula">
-                        ?
-                      </span>
+                      Senha
                     </Form.Label>
                     <Form.Control
                       type="password"
@@ -71,7 +65,7 @@ function App() {
             </Form>
           </div>
         </div>
-        <p class="text-center mt-3"><span><a href="#">Entrar em contato com o suporte.</a></span></p>
+        <p class="text-center mt-3"><span><a href="">Entrar em contato com o suporte.</a></span></p>
       </div>
     </div>
   );

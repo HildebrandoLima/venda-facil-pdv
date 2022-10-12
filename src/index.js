@@ -5,12 +5,14 @@ import './index.css';
 import App from './App';
 import Sale from './components/Sale/Sale';
 import reportWebVitals from './reportWebVitals';
+import Users from './components/User/Users';
+import User from './components/User/User';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <Sale />
+    <User />
   </React.StrictMode>
 );
 

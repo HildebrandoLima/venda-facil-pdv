@@ -1,54 +1,114 @@
 import React, { useEffect, useState } from 'react';
-import Api from '../../Api';
-import SearchUser from './SearchUser';
+import Form from 'react-bootstrap/Form';
+import Api from '../../Api.js';
 
 function User() {
-    const [users, setUsers] = useState([]);
+    const [validated, setValidated] = useState(false);
+    const [user, setUser] = useState([]);
+
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        setValidated(true);
+    };
 
     useEffect(() => {
-        Api.get('/usuario/listar').then((response) => {
-            setUsers(response.data.data);
-            console.log(users);
+        Api.get('/usuario/listar/5').then((response) => {
+            setUser(response.data.data);
+            console.log(user);
         });
     }, []);
 
     return (
-        <div>
-            <SearchUser />
-
-            <div class="table-responsive">
-                <table class="table table-bordered border-black table-striped table-hover mt-2">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">CPF</th>
-                            <th scope="col">Data de Nascimento</th>
-                            <th scope="col">Gênero</th>
-                            <th scope="col">Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            users?.map((user) =>
-                                <tr>
-                                    <th scope="row">{user.usuarioId ? user.usuarioId : 0}</th>
-                                    <td>{user.nome ? user.nome : ''}</td>
-                                    <td>{user.cpf ? user.cpf : ''}</td>
-                                    <td>{user.dataNascimento ? user.dataNascimento : ''}</td>
-                                    <td>{user.genero ? user.genero : ''}</td>
-                                    <td>
-                                        <button type="submit" class="btn btn-outline-primary">Detalhes</button>
-                                        &nbsp;
-                                        <button type="submit" class="btn btn-outline-success">Editar</button>
-                                        &nbsp;
-                                        <button type="submit" class="btn btn-outline-danger">Remover</button>
-                                    </td>
-                                </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
+        <div class="container">
+            <div class="card mt-3 shadow p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                        Dados Pessoais
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <Form.Group md="4" controlId="validationMatricula">
+                                        <Form.Label>
+                                            Nome
+                                        </Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            name="nome"
+                                            required
+                                        />
+                                        <Form.Control.Feedback type="invalid">
+                                            Campo obrigatório.
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <Form.Group md="4" controlId="validationCPF">
+                                        <Form.Label>
+                                            CPF
+                                        </Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            name="cpf"
+                                            maxLength="14"
+                                            pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})"
+                                            required
+                                        />
+                                        <Form.Control.Feedback type="invalid">
+                                            Campo obrigatório.
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <Form.Group md="4" controlId="validationDataNascimento">
+                                        <Form.Label>
+                                            Data De Nascimento
+                                        </Form.Label>
+                                        <Form.Control
+                                            type="date"
+                                            name="DataNascimento"
+                                            required
+                                        />
+                                        <Form.Control.Feedback type="invalid">
+                                            Campo obrigatório.
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <Form.Group md="4" controlId="validationMatricula">
+                                        <Form.Label>
+                                            Gênero
+                                        </Form.Label>
+                                        <Form.Select required>
+                                            <option value="M">Masculino</option>
+                                            <option value="F">Feminio</option>
+                                            <option value="I">Prefiro não dizer</option>
+                                        </Form.Select>
+                                        <Form.Control.Feedback type="invalid">
+                                            Campo obrigatório.
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button class="btn btn-outline-primary" type="submit">Cadastrar</button>
+                        </div>
+                    </Form>
+                </div>
             </div>
         </div>
     );
