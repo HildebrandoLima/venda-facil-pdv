@@ -7,12 +7,14 @@ import Sale from './components/Sale/Sale';
 import reportWebVitals from './reportWebVitals';
 import Users from './components/User/Users';
 import User from './components/User/User';
+import CreateUser from './components/User/CreateUser';
+import EditUser from './components/User/EditUser';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <User />
+    <EditUser />
   </React.StrictMode>
 );
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Api from '../../Api.js';
 
-function User() {
+function EditUser() {
     const [users, setUsers] = useState([]);
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
@@ -41,7 +41,7 @@ function User() {
             genero: genero
         };
 
-        await Api.post('/usuario/editar', data).then((response) => {
+        await Api.put('/usuario/editar/5', data).then((response) => {
             console.log(response.data.data);
         }).catch((error) => {
             if (error.response.data.data) {
@@ -76,7 +76,7 @@ function User() {
                                             type="text"
                                             name="nome"
                                             id="nome"
-                                            value={user.nome ? user.nome : ''}
+                                            placeholder={user.nome}
                                             onChange={(e) => handleNome(e)}
                                             required />
                                     </div>
@@ -89,7 +89,7 @@ function User() {
                                             type="number"
                                             name="cpf"
                                             id="cpf"
-                                            value={user.cpf ? user.cpf : ''}
+                                            placeholder={user.cpf}
                                             maxlength="14"
                                             onChange={(e) => handleCpf(e)}
                                             required />
@@ -105,7 +105,7 @@ function User() {
                                             type="date"
                                             name="dataNascimento"
                                             id="dataNascimento"
-                                            value={user.dataNascimento ? user.dataNascimento : ''}
+                                            value={user.dataNascimento}
                                             onChange={(e) => handleDatanascimento(e)}
                                             required />
                                     </div>
@@ -114,7 +114,7 @@ function User() {
                                     <div class="form-group">
                                         <label for="cpf" class="form-label">Gênero</label>
                                         <select class="form-select" name="genero" id="genero" onChange={(e) => handleGenero(e)} required>
-                                            <option value={user.genero ? user.genero : ''} selected>{user.genero ? user.genero : ''}</option>
+                                            <option value={user.genero} selected>{user.genero}</option>
                                             <option value="M">Masculino</option>
                                             <option value="F">Feminio</option>
                                             <option value="I">Prefiro não dizer</option>
@@ -133,4 +133,4 @@ function User() {
     );
 }
 
-export default User;
+export default EditUser;
